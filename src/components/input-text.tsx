@@ -53,7 +53,7 @@ interface InputTextProps extends
   error?: ReactNode
 }
 
-export function InputText({
+export default function InputText({
   size,
   disabled,
   className,
