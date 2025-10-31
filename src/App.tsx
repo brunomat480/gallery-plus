@@ -1,12 +1,16 @@
-import Button from "./components/button";
-import ButtonIcon from "./components/button-icon";
+import { useForm } from "react-hook-form";
 import ChevronLeftIcon from "./assets/icons/chevron-left.svg?react";
 import ChevronRightIcon from "./assets/icons/chevron-right.svg?react";
-import Badge from "./components/badge";
 import Alert from "./components/alert";
+import Badge from "./components/badge";
+import Button from "./components/button";
+import ButtonIcon from "./components/button-icon";
 import Divider from "./components/divider";
+import InputSingleFile from "./components/input-single-file";
 
 export default function App() {
+	const form = useForm();
+
 	return (
 		<div className="grid gap-7 p-6">
 			<div className="flex gap-3">
@@ -47,6 +51,12 @@ export default function App() {
 
 			<div>
 				<Divider />
+				<InputSingleFile
+					form={form}
+					allowedExtensions={['png', 'jpg', 'jpeg', 'webp']}
+					maxFileSizeInMB={50}
+					{...form.register('file')}
+				/>
 			</div>
 		</div>
 	);
