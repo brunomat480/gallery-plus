@@ -1,9 +1,38 @@
+import { useParams } from "react-router";
+import Container from "../components/container";
+import Skeleton from "../components/skeleton";
 import Text from "../components/text";
+import PhotosNavigator from "../contexts/albums/components/photo-navigation";
+import type { Photo } from "../contexts/photos/models/photo";
 
 export default function PagePhotoDetails() {
+  const { id } = useParams()
+
+  const isLoadingPhoto = false;
+  const photo = {
+    id: '123',
+    title: 'Teste',
+    imageId: 'portrait-tower.png',
+    albums: [
+      { id: '3421', title: 'Album 1' },
+      { id: '123', title: 'Album 2' },
+      { id: '456', title: 'Album 3' },
+    ]
+  } as Photo;
+
   return (
-    <>
-      <Text variant="heading-medium">Página detalhe da foto</Text>
-    </>
+    <Container>
+      <header className="flex text-center justify-between gap-8 mb-8">
+        {!isLoadingPhoto ? (
+          <Text variant="heading-large">
+            {photo?.title}
+          </Text>
+        ) : (
+          <Skeleton className="w-48 h-8" />
+        )}
+
+        <PhotosNavigator />
+      </header>
+    </Container>
   )
 }
