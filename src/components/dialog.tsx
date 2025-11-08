@@ -83,7 +83,7 @@ export function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Content
         ref={ref}
-        className={cn("fixed left-1/2 top1/2 w-full max-w-[32rem] z-[60] -translate-x-1/2 -translate-y-1/2 data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:slide-in-from-bottom-[48%] data-[state=closed]:slide-out-from-bottom-[48%] data-[state=open]:animate-in data-[state=closed]:animate-out", className)}
+        className={cn("fixed left-1/2 top-1/2 w-full max-w-[32rem] z-[60] -translate-x-1/2 -translate-y-1/2 data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:slide-in-from-bottom-[48%] data-[state=closed]:slide-out-from-bottom-[48%] data-[state=open]:animate-in data-[state=closed]:animate-out", className)}
         {...props}
       >
         <Card size="lg" variant="primary">
