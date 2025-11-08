@@ -2,10 +2,10 @@ import type { ReactNode } from "react";
 import SelectCheckboxIllustration from '../../../assets/images/select-checkbox.svg?react';
 import Button from "../../../components/button";
 import { Dialog, DialogBody, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTrigger } from "../../../components/dialog";
-import ImagePreview from "../../../components/image-preview";
 import InputText from "../../../components/input-text";
 import Skeleton from "../../../components/skeleton";
 import Text from "../../../components/text";
+import PhotoImageSelectable from "../../photos/components/photo-image-selectable";
 import type { Photo } from "../../photos/models/photo";
 
 interface AlbumNewDialogProps {
@@ -37,6 +37,10 @@ export default function AlbumNewDialog({ trigger }: AlbumNewDialogProps) {
     }
   ];
 
+  function handleTogglePhoto(seleted: boolean, photoId: string) {
+
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -57,11 +61,12 @@ export default function AlbumNewDialog({ trigger }: AlbumNewDialogProps) {
             {!isLoadingPhotos && photos.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {photos.map((photo) => (
-                  <ImagePreview
+                  <PhotoImageSelectable
                     key={photo.id}
                     src={`/images/${photo.imageId}`}
                     title={photo.title}
-                    className="w-20 h-20"
+                    imageClassName="w-20 h-20"
+                    onSelectedImage={(selected) => handleTogglePhoto(selected, photo.id)}
                   />
                 ))}
               </div>
