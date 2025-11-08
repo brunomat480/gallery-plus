@@ -33,7 +33,7 @@ export function DialogHeader({
   return (
     <>
       <header
-        className={cn("flex items-center justify-baseline", className)}
+        className={cn("flex items-center justify-between", className)}
         {...props}
       >
         <DialogPrimitive.Title>
