@@ -6,7 +6,7 @@ import Skeleton from "../components/skeleton";
 import Text from "../components/text";
 import AlbumsListSelectable from "../contexts/albums/components/albums-list-selectable";
 import PhotosNavigator from "../contexts/albums/components/photo-navigation";
-import useAlbums from "../contexts/hooks/use-albums";
+import useAlbums from "../contexts/albums/hooks/use-albums";
 import type { Photo } from "../contexts/photos/models/photo";
 
 export default function PagePhotoDetails() {
