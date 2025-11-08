@@ -19,7 +19,7 @@ export default function PhotoWidget({
     <div className="flex flex-col gap-4">
       {!loading ? (
         <ImagePreview
-          src={`/images/${photo.imageId}`}
+          src={`${import.meta.env.VITE_IMAGES_URL}/${photo.imageId}`}
           title={photo.title}
           imageClassName="w-[10.875rem] h-[10.875rem] rounded-lg"
         />
@@ -36,7 +36,7 @@ export default function PhotoWidget({
           <Skeleton className="w-full h-6" />
         )}
 
-        <div className="flex gap-1 min-h-[1.375]">
+        <div className="flex gap-1 min-h-[1.375rem]">
           {!loading ? (
             <>
               {photo.albums.slice(0, 1).map((album) => (
