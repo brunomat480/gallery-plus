@@ -68,7 +68,7 @@ export default function InputText({
         <input className={inputTextVariants()} {...props} />
       </div>
       {error && (
-        <Text variant="label-small" className="text-accent-red">Um erro do campo</Text>
+        <Text variant="label-small" className="text-accent-red">{error}</Text>
       )}
     </div>
   )
