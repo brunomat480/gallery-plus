@@ -1,18 +1,22 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import LayoutMain from "./pages/layout-main";
 import PageHome from "./pages/page-home";
 import PagePhotoDetails from "./pages/page-photo-details";
 
-export default function App() {
+const queryClient = new QueryClient();
 
+export default function App() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route element={<LayoutMain />}>
-					<Route index element={<PageHome />} />
-					<Route path="/fotos/:id" element={<PagePhotoDetails />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+		<QueryClientProvider client={queryClient}>
+			<BrowserRouter>
+				<Routes>
+					<Route element={<LayoutMain />}>
+						<Route index element={<PageHome />} />
+						<Route path="/fotos/:id" element={<PagePhotoDetails />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</QueryClientProvider>
 	);
 }
