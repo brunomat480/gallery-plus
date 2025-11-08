@@ -6,10 +6,13 @@ import Skeleton from "../components/skeleton";
 import Text from "../components/text";
 import AlbumsListSelectable from "../contexts/albums/components/albums-list-selectable";
 import PhotosNavigator from "../contexts/albums/components/photo-navigation";
+import useAlbums from "../contexts/hooks/use-albums";
 import type { Photo } from "../contexts/photos/models/photo";
 
 export default function PagePhotoDetails() {
   const { id } = useParams()
+
+  const { albums, isLoadingAlbums } = useAlbums();
 
   const isLoadingPhoto = false;
   const photo = {
@@ -69,12 +72,8 @@ export default function PagePhotoDetails() {
 
           <AlbumsListSelectable
             photo={photo}
-            albums={[
-              { id: '3421', title: 'Album 1' },
-              { id: '123', title: 'Album 2' },
-              { id: '456', title: 'Album 3' },
-            ]}
-            loading={isLoadingPhoto}
+            albums={albums}
+            loading={isLoadingAlbums}
           />
         </div>
       </div>
