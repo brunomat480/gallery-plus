@@ -1,4 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { api, fetcher } from "../../../helpers/api";
 import type { Photo } from "../models/photo";
@@ -11,6 +12,7 @@ interface PhotoDetailsResponse extends Photo {
 }
 
 export default function usePhoto(id?: string) {
+  const navigate = useNavigate();
   const { managePhotoOnAlbum } = usePhotoAlbums();
 
   const { data, isLoading } = useQuery<PhotoDetailsResponse>({
@@ -50,11 +52,24 @@ export default function usePhoto(id?: string) {
     }
   }
 
+  async function deletePhoto(photoId: string) {
+    try {
+      await api.delete(`/photos/${photoId}`);
+
+      toast.success('Foto deletada com sucesso');
+      navigate('/');
+    } catch (error) {
+      toast.error('Erro ao deletar foto!');
+      throw error;
+    }
+  }
+
   return {
     photo: data,
     nextPhotoId: data?.nextPhotoId,
     previousPhotoId: data?.previousPhotoId,
     isLoadingPhoto: isLoading,
     createPhoto,
+    deletePhoto
   }
 }

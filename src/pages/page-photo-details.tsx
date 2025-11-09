@@ -1,3 +1,4 @@
+import { useTransition } from "react";
 import { useParams } from "react-router";
 import Button from "../components/button";
 import Container from "../components/container";
@@ -12,8 +13,21 @@ import type { Photo } from "../contexts/photos/models/photo";
 
 export default function PagePhotoDetails() {
   const { id } = useParams();
-  const { photo, previousPhotoId, nextPhotoId, isLoadingPhoto } = usePhoto(id);
+  const {
+    photo,
+    previousPhotoId,
+    nextPhotoId,
+    isLoadingPhoto,
+    deletePhoto } = usePhoto(id);
   const { albums, isLoadingAlbums } = useAlbums();
+
+  const [isDeletingPhoto, setIsDeletingPhoto] = useTransition();
+
+  function handleDeletePhoto() {
+    setIsDeletingPhoto(async () => {
+      await deletePhoto(photo!.id);
+    });
+  }
 
   if (!isLoadingAlbums && !photo) {
     return (
@@ -52,8 +66,12 @@ export default function PagePhotoDetails() {
           )}
 
           {!isLoadingPhoto ? (
-            <Button variant="destructive">
-              Excluir
+            <Button
+              variant="destructive"
+              disabled={isDeletingPhoto}
+              onClick={handleDeletePhoto}
+            >
+              {isDeletingPhoto ? 'Excluindo' : 'Excluir'}
             </Button>
           ) : (
             <Skeleton className="w-28 h-10" />
