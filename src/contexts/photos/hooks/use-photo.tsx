@@ -1,4 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { api, fetcher } from "../../../helpers/api";
 import type { Photo } from "../models/photo";
 import type { PhotoNewFormSchema } from "../schemas";
@@ -17,7 +18,7 @@ export default function usePhoto(id?: string) {
   const queryClient = useQueryClient();
 
   async function createPhoto(payload: PhotoNewFormSchema) {
-    // eslint-disable-next-line no-useless-catch
+
     try {
       const { data: photo } = await api.post<Photo>('/photos', {
         title: payload.title
@@ -40,7 +41,10 @@ export default function usePhoto(id?: string) {
       }
 
       queryClient.invalidateQueries({ queryKey: ['photos'] })
+
+      toast.success('Foto criada com sucesso');
     } catch (error) {
+      toast.error('Erro ao criar foto');
       throw error;
     }
   }
