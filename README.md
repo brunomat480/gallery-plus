@@ -1,21 +1,58 @@
-# Gallery Plus
+# Gallery+
+<div> 
+  <p><img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />ReactJS</p>
+  <p><img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" />Tailwind CSS</p>
+  <p><img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/axios/axios-plain.svg" />Axios</p>
+  <p><img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactquery/reactquery-original.svg" />React Query</p>
+</div>
+<img src="https://github.com/user-attachments/assets/8b6d5d47-e031-4258-8cbc-8f6f363e24fe" />
 
-## Getting started
+##
 
-Run the install command
-
+Clone o repositório:
+```bash
+git clone https://github.com/brunomat480/gallery-plus.git
 ```
+
+Baixe as dependências:
+```bash
+npm i
+```
+ou
+```bash
+yarn
+```
+ou
+```bash
 pnpm install
 ```
 
-Then in a terminal run the backend server
+##
 
+Inicie a aplicação:
+```bash
+npm run dev
 ```
-pnpm dev-server
+ou 
+```bash
+yarn dev
 ```
-
-In another terminal run the frontend server
-
-```
+ou
+```bash
 pnpm dev
+```
+
+##
+
+Inicie o backend:
+```bash
+npm run dev-server
+```
+ou
+```bash
+yarn dev-server
+```
+ou
+```bash
+pnpm dev-server
 ```
