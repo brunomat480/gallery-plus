@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { api, fetcher } from "../../../helpers/api";
 import type { Photo } from "../models/photo";
 import type { PhotoNewFormSchema } from "../schemas";
+import { usePhotoAlbums } from "./use-photo-albums";
 
 interface PhotoDetailsResponse extends Photo {
   nextPhotoId?: string;
@@ -10,6 +11,8 @@ interface PhotoDetailsResponse extends Photo {
 }
 
 export default function usePhoto(id?: string) {
+  const { managePhotoOnAlbum } = usePhotoAlbums();
+
   const { data, isLoading } = useQuery<PhotoDetailsResponse>({
     queryKey: ['photo', id],
     queryFn: () => fetcher(`/photos/${id}`),
@@ -35,9 +38,7 @@ export default function usePhoto(id?: string) {
       );
 
       if (payload.albumsIds && payload.albumsIds.length > 0) {
-        await api.put(`/photos/${photo.id}/albums`, {
-          albumsIds: payload.albumsIds
-        })
+        await managePhotoOnAlbum(photo.id, payload.albumsIds);
       }
 
       queryClient.invalidateQueries({ queryKey: ['photos'] })

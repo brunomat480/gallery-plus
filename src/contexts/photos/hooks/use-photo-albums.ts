@@ -5,10 +5,10 @@ import { api } from "../../../helpers/api";
 export function usePhotoAlbums() {
   const queryClient = useQueryClient();
 
-  async function managePhotoOnAlbum(photoId: string, albumIds: string[]) {
+  async function managePhotoOnAlbum(photoId: string, albumsIds: string[]) {
     try {
-      await api.put(`/photo/${photoId}/albums`, {
-        albumIds,
+      await api.put(`/photos/${photoId}/albums`, {
+        albumsIds,
       });
 
       queryClient.invalidateQueries({ queryKey: ['photo', photoId] });
